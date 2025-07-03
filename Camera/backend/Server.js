@@ -15,4 +15,4 @@ mongoose
 app.use("/api/auth", require("./routes/authRoutes"));
 
 const PORT = process.env.PORT || 5000;
-app.listen;
+app.listen(PORT, () => console.log("serever run on port 5000"));
