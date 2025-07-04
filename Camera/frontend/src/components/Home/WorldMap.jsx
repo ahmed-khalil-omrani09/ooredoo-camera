@@ -22,7 +22,6 @@ export function WorldMapDemo() {
             ))}
           </span>
         </p>
-
       </div>
       <WorldMap
         dots={[
