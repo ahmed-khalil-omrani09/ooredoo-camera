@@ -57,6 +57,8 @@ export function WorldMapDemo() {
             end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
           },
         ]}
+        dotColor="red"
+        lineColor="red"
       />
     </div>
   );
