@@ -9,15 +9,14 @@ function Icon() {
   return <img src="/Ooredoo_logo.svg.png" alt="Logo" width={247} height={24} />;
 }
 
-
 const navLinks = [
-  { label: "Home" },
-  { label: "manage Nvc"},
-  { label: "manage Site" },
-  { label: "manage Accounts  " },
+  { label: "Home", href: "/" },
+  { label: "manage Nvc", href: "/offers" },
+  { label: "manage Site", href: "/orders" },
+  { label: "manage Accounts  ", href: "/aboutus" },
 ];
 
-function SiteHeader({onShowComp}) {
+function SiteHeader() {
   const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize from localStorage or system preference
@@ -29,7 +28,7 @@ function SiteHeader({onShowComp}) {
     }
     return false;
   });
-  const handleLogin = () => {
+  const handleClick = () => {
     navigate("/login");
   };
   useEffect(() => {
@@ -44,12 +43,8 @@ function SiteHeader({onShowComp}) {
   }, [isDarkMode]);
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
-function handleClick(label){
-  onShowComp(label)
 
-}
   return (
-    <>
     <header className="sticky top-0 z-30 w-full bg-white/80 backdrop-blur border-b shadow-sm dark:bg-gray-900/80 dark:border-gray-700">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
@@ -63,14 +58,14 @@ function handleClick(label){
 
         {/* Navigation */}
         <nav className="hidden md:flex gap-6 ml-8">
-          {navLinks.map((label) => (
-            <button
-              key={label.label}
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
               className="text-md font-medium text-gray-700 hover:text-red-600 transition-colors dark:text-gray-300 dark:hover:text-red-400"
-              onClick={()=>handleClick(label.label)}
             >
-              {label.label}
-            </button>
+              {link.label}
+            </Link>
           ))}
         </nav>
 
@@ -97,7 +92,7 @@ function handleClick(label){
           <Button
             variant="outline"
             className="hidden md:inline-flex"
-            onClick={handleLogin}
+            onClick={handleClick}
           >
             <User className="mr-2 h-4 w-4" />
             Sign In
@@ -105,8 +100,6 @@ function handleClick(label){
         </div>
       </div>
     </header>
-    
-    </>
   );
 }
 
